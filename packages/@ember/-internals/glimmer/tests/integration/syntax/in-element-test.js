@@ -5,26 +5,16 @@ import { Component } from '@ember/-internals/glimmer';
 import { set } from '@ember/-internals/metal';
 
 moduleFor(
-  '{{-in-element}}',
+  '{{in-element}}',
   class extends RenderingTest {
-    ['@test using {{#in-element whatever}} asserts']() {
-      // the in-element keyword is not yet public API this test should be removed
-      // once https://github.com/emberjs/rfcs/pull/287 lands and is enabled
-
-      let el = document.createElement('div');
-      expectAssertion(() => {
-        this.render(strip`{{#in-element el}}{{/in-element}}`, { el });
-      }, /The {{in-element}} helper cannot be used. \('-top-level' @ L1:C0\)/);
-    }
-
     ['@test allows rendering into an external element']() {
       let someElement = document.createElement('div');
 
       this.render(
         strip`
-      {{#-in-element someElement}}
+      {{#in-element someElement}}
         {{text}}
-      {{/-in-element}}
+      {{/in-element}}
     `,
         {
           someElement,
@@ -70,9 +60,9 @@ moduleFor(
       this.render(
         strip`
       {{#if showModal}}
-        {{#-in-element someElement}}
+        {{#in-element someElement}}
           {{modal-display text=text}}
-        {{/-in-element}}
+        {{/in-element}}
       {{/if}}
     `,
         {

@@ -52,8 +52,8 @@ moduleFor(
 
       ---
 
-      {{#with var as |-in-element|}}
-        {{-in-element}}
+      {{#with var as |in-element|}}
+        {{in-element}}
       {{/with}}`,
         { var: 'var' }
       );
